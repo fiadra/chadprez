@@ -1,0 +1,57 @@
+\documentclass{beamer}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=cyan]{hyperref}
+
+\title{ChadGuide}
+\subtitle{Planowanie podróży po Europie}
+\author{Paweł Kauf, Filip Rabiega}
+\date{\today}
+
+\begin{document}
+\maketitle
+\begin{frame}
+  \frametitle{Wstęp}
+  \emph{Problem}: Planowanie podróży wielomiastowej wymaga
+  sprawdzenia wykładniczej liczby kombinacji kolejności miast. Ręczne
+  porównywanie jest niepraktyczne.
+
+  \emph{Cel}: Znalezienie optymalnych (najtańszych/najkrótszych) tras
+  lotniczych łączących wiele miast europejskich.
+\end{frame}
+\begin{frame}
+  \frametitle{Użyte technologie}
+
+\end{frame}
+\begin{frame}
+  \frametitle{Demo}
+  \begin{itemize}
+    \item Nasz projekt można obejrzeć na
+      \href{https://github.com/fiadra/chadguide}{https://github.com/fiadra/chadguide}.
+    \item Działającą publiczną instancją jest
+      \href{https://www.chadguide.site}{https://www.chadguide.site}.
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{Algorytm}
+  \begin{itemize}
+    \item Sercem projektu jest zmodyfikowany algorytm Dijkstry, który
+      wyznacza drogi Pareto-optymalne względem ceny oraz czasu trwania lotu.
+    \item Droga \( p \) \emph{dominuje} drogę \( q \), gdy istnieje
+      kryterium, w którym \( p \) jest lepsze od \( q \) oraz nie
+      istnieje kryterium, w którym \( p \) jest gorsze niż \( q \).
+    \item Droga jest \emph{Pareto optymalna}, gdy nie jest dominowana
+      przez żadną inną drogę.
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{Algorytm}
+  \begin{itemize}
+    \item Interesują nas tylko te drogi, które wychodzą i wracają z
+      wyznaczonego miasta, oraz przelatują przez wszystkie miasta,
+      które użytkownik chce odwiedzić.
+    \item Inne drogi są automatycznie odrzucane.
+  \end{itemize}
+\end{frame}
+\end{document}
