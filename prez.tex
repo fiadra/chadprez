@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[colorlinks=true, linkcolor=blue, urlcolor=cyan]{hyperref}
+\usepackage{graphicx}
 
 \title{ChadGuide}
 \subtitle{Planowanie podróży po Europie}
@@ -20,12 +21,25 @@
   \emph{Cel}: Znalezienie optymalnych (najtańszych/najkrótszych) tras
   lotniczych łączących wiele miast europejskich.
 \end{frame}
-\begin{frame}
-  \frametitle{Użyte technologie}
-
+\begin{frame}{Wstęp}
+  \emph{ChadGuide} jest \emph{ChadRozwiązaniem}.
+  \begin{itemize}
+    \item Oprócz optymalizacji wykonuje jeszcze walidacje lotów
+    \item Wszystko dzieje się przez wygodną oraz przejrzystą aplikację webową
+  \end{itemize}
 \end{frame}
-\begin{frame}
-  \frametitle{Demo}
+\begin{frame}{Użyte technologie}
+  \begin{itemize}
+    \item Python: \texttt{poetry}, \texttt{pandas},
+      \texttt{streamlit}, \texttt{pandera}, \texttt{fastapi},
+      \texttt{uvicorn}, \texttt{pydantic}, \texttt{sse-starlette},
+      \texttt{playwright}, \texttt{pytest}
+    \item JavaScript
+    \item SQLite
+    \item API: Duffel, Gepapify
+  \end{itemize}
+\end{frame}
+\begin{frame}{Demo}
   \begin{itemize}
     \item Nasz projekt można obejrzeć na
       \href{https://github.com/fiadra/chadguide}{https://github.com/fiadra/chadguide}.
@@ -33,11 +47,12 @@
       \href{https://www.chadguide.site}{https://www.chadguide.site}.
   \end{itemize}
 \end{frame}
-\begin{frame}
-  \frametitle{Algorytm}
+\begin{frame}{Algorytm}
   \begin{itemize}
     \item Sercem projektu jest zmodyfikowany algorytm Dijkstry, który
-      wyznacza drogi Pareto-optymalne względem ceny oraz czasu trwania lotu.
+      wyznacza drogi Pareto-optymalne względem ceny oraz czasu
+      trwania lotu. Jednocześnie radzi sobie on z grafami, które są
+      zmienne w czasie.
     \item Droga \( p \) \emph{dominuje} drogę \( q \), gdy istnieje
       kryterium, w którym \( p \) jest lepsze od \( q \) oraz nie
       istnieje kryterium, w którym \( p \) jest gorsze niż \( q \).
@@ -45,13 +60,36 @@
       przez żadną inną drogę.
   \end{itemize}
 \end{frame}
-\begin{frame}
-  \frametitle{Algorytm}
+\begin{frame}{Algorytm}
   \begin{itemize}
     \item Interesują nas tylko te drogi, które wychodzą i wracają z
       wyznaczonego miasta, oraz przelatują przez wszystkie miasta,
       które użytkownik chce odwiedzić.
     \item Inne drogi są automatycznie odrzucane.
+    \item Przed uruchomieniem algorytmu wykonujemy prosty
+      \emph{pruning}, tzn. pozbywamy się tych połączeń w grafie,
+      które prawie na pewno nie będą częścią optymalnego rozwiązania.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Algorytm}
+  \includegraphics[width=1\textwidth]{alg.png}
+\end{frame}
+\begin{frame}
+  \begin{itemize}
+    \item Znalezione drogi są \emph{walidowane}, tzn. sprawdzamy, czy
+      faktycznie istnieją.
+    \item Dane w naszej bazie zawsze będą trochę do tyłu względem
+      prawdziwych, ponieważ koszty biletów oraz ich dostępność ciągle
+      się zmieniają. Dane dla tygodnia
+      01.07.2026--07.07.2026 są ekstrapolowane na cały miesiąc.
+    \item Robi to porozumiewając się z DuffelAPI.
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \begin{itemize}
+    \item Dla każdego miasta w bazie mamy do \( 5 \) zdjęć
+      popularnych atrakcji z tego miasta.
+    \item Atrakcje te są wyświetlane podczas oczekiwania na zwrócenie wyników.
   \end{itemize}
 \end{frame}
 \end{document}
