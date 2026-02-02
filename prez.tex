@@ -47,6 +47,25 @@
       \href{https://www.chadguide.site}{https://www.chadguide.site}.
   \end{itemize}
 \end{frame}
+\begin{frame}{Zbieranie danych o lotach}
+  \begin{itemize}
+    \item Zbieranie danych o lotach do bazy jest realizowane przez
+      paczkę \texttt{flight scanner}, która łączy się z DuffelAPI
+      (148 lotnisk, 89k lotów)
+    \item Dane w naszej bazie zawsze będą trochę do tyłu względem
+      prawdziwych, ponieważ koszty biletów oraz ich dostępność ciągle
+      się zmieniają. Dane dla tygodnia
+      01.07.2026--07.07.2026 są ekstrapolowane na cały miesiąc.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Zbieranie danych o atrakcjach}
+  \begin{itemize}
+    \item Zbieranie danych o atrakcjach dzieje się asynchronicznie
+      podczas działania algorytmu. Służy do tego paczka, która
+      odpytuje Geoapify o dane.
+    \item Zdjęcia atrakcji zostały zebrane metodami webscrapingu.
+  \end{itemize}
+\end{frame}
 \begin{frame}{Algorytm}
   \begin{itemize}
     \item Sercem projektu jest zmodyfikowany algorytm Dijkstry, który
@@ -74,22 +93,15 @@
 \begin{frame}{Algorytm}
   \includegraphics[width=1\textwidth]{alg.png}
 \end{frame}
-\begin{frame}
+\begin{frame}{Walidacja}
   \begin{itemize}
     \item Znalezione drogi są \emph{walidowane}, tzn. sprawdzamy, czy
       faktycznie istnieją.
-    \item Dane w naszej bazie zawsze będą trochę do tyłu względem
-      prawdziwych, ponieważ koszty biletów oraz ich dostępność ciągle
-      się zmieniają. Dane dla tygodnia
-      01.07.2026--07.07.2026 są ekstrapolowane na cały miesiąc.
-    \item Robi to porozumiewając się z DuffelAPI.
+    \item Top 5 tras jest weryfikowanych asynchronicznie z API w
+      czasie rzeczywistym.
   \end{itemize}
 \end{frame}
 \begin{frame}
-  \begin{itemize}
-    \item Dla każdego miasta w bazie mamy do \( 5 \) zdjęć
-      popularnych atrakcji z tego miasta.
-    \item Atrakcje te są wyświetlane podczas oczekiwania na zwrócenie wyników.
-  \end{itemize}
+  \includegraphics[width=1\textwidth]{diag.png}
 \end{frame}
 \end{document}
