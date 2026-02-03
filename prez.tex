@@ -34,9 +34,11 @@
       \texttt{streamlit}, \texttt{pandera}, \texttt{fastapi},
       \texttt{uvicorn}, \texttt{pydantic}, \texttt{sse-starlette},
       \texttt{playwright}, \texttt{pytest}
-    \item JavaScript
+    \item JavaScript: \texttt{vanilla js}, \texttt{tailwind css},
+      \texttt{leaflet.js}
     \item SQLite
-    \item API: Duffel, Gepapify
+    \item nginx
+    \item API: Duffel, Gepapify (\texttt{httpx async})
   \end{itemize}
 \end{frame}
 \begin{frame}{Demo}
@@ -62,7 +64,7 @@
   \begin{itemize}
     \item Zbieranie danych o atrakcjach dzieje się asynchronicznie
       podczas działania algorytmu. Służy do tego paczka, która
-      odpytuje Geoapify o dane.
+      odpytuje Geoapify Places API o dane.
     \item Zdjęcia atrakcji zostały zebrane metodami webscrapingu.
   \end{itemize}
 \end{frame}
@@ -81,8 +83,9 @@
 \end{frame}
 \begin{frame}{Algorytm}
   \begin{itemize}
-    \item Interesują nas tylko te drogi, które wychodzą i wracają z
-      wyznaczonego miasta, oraz przelatują przez wszystkie miasta,
+    \item Interesują nas tylko te drogi, które są Pareto optymalne,
+      oraz które wychodzą i wracają do
+      wyznaczonego miasta, przelatując przy tym przez wszystkie miasta,
       które użytkownik chce odwiedzić.
     \item Inne drogi są automatycznie odrzucane.
     \item Przed uruchomieniem algorytmu wykonujemy prosty
@@ -117,10 +120,24 @@
   \begin{itemize}
     \item Za dużo czasu zajęło nam znalezienie odpowiedniego dostawcy
       danych lotów.
-    \item blabla
+    \item Niektóre częsci kodu są nadmiernie złożnone złożone.
+    \item Złożoność zasadniczej części alogytmu jest duża, jeżeli
+      miast które użytkownik chce odwiedzić jest dużo. Padł pomysł,
+      aby tę część kodu przepisać na \texttt{C}, ale nie było na to czasu.
   \end{itemize}
 \end{frame}
 \begin{frame}{Podsumowanie}
+  Czy wypełniliśmy cele? \emph{Tak.}
 
+  Jest to nasz pierwszy \emph{akademicki} projekt, którego, naszym
+  zdaniem, nie powinnyśmy się wstydzić.
+\end{frame}
+\begin{frame}
+  \centering
+  \Huge Pytania?
+\end{frame}
+\begin{frame}
+  \centering
+  \Huge Dziękujemy za uwagę.
 \end{frame}
 \end{document}
