@@ -63,8 +63,8 @@
 \begin{frame}{Zbieranie danych o atrakcjach}
   \begin{itemize}
     \item Zbieranie danych o atrakcjach dzieje się asynchronicznie
-      podczas działania algorytmu. Służy do tego paczka, która
-      odpytuje Geoapify Places API o dane.
+      podczas działania algorytmu. Dane są zczytywane z bazy
+      statycznej, gdzie mamy ich dane oraz zdjęcia.
     \item Zdjęcia atrakcji zostały zebrane metodami webscrapingu.
   \end{itemize}
 \end{frame}
@@ -99,7 +99,7 @@
 \begin{frame}{Walidacja}
   \begin{itemize}
     \item Znalezione drogi są \emph{walidowane}, tzn. sprawdzamy, czy
-      faktycznie istnieją.
+      sprawdzamy ich dostępność oraz sprawdzamy ceny na aktualne.
     \item Top 5 tras jest weryfikowanych asynchronicznie z API w
       czasie rzeczywistym.
   \end{itemize}
@@ -120,7 +120,7 @@
   \begin{itemize}
     \item Za dużo czasu zajęło nam znalezienie odpowiedniego dostawcy
       danych lotów.
-    \item Niektóre częsci kodu są nadmiernie złożnone złożone.
+    \item Niektóre częsci kodu są nadmiernie złożone.
     \item Złożoność zasadniczej części alogytmu jest duża, jeżeli
       miast które użytkownik chce odwiedzić jest dużo. Padł pomysł,
       aby tę część kodu przepisać na \texttt{C}, ale nie było na to czasu.
