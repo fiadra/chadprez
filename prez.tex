@@ -38,7 +38,7 @@
       \texttt{leaflet.js}
     \item SQLite
     \item nginx
-    \item API: Duffel, Gepapify (\texttt{httpx async})
+    \item API: Duffel, Geoapify (\texttt{httpx async})
   \end{itemize}
 \end{frame}
 \begin{frame}{Demo}
@@ -57,13 +57,14 @@
     \item Dane w naszej bazie zawsze będą trochę do tyłu względem
       prawdziwych, ponieważ koszty biletów oraz ich dostępność ciągle
       się zmieniają. Dane dla tygodnia
-      01.07.2026--07.07.2026 są ekstrapolowane na cały miesiąc.
+      01.07.2026--07.07.2026 są ekstrapolowane na tydzień
+      13.07.2026--19.07.2026.
   \end{itemize}
 \end{frame}
 \begin{frame}{Zbieranie danych o atrakcjach}
   \begin{itemize}
     \item Zbieranie danych o atrakcjach dzieje się asynchronicznie
-      podczas działania algorytmu. Dane są zczytywane z bazy
+      podczas działania algorytmu. Dane są sczytywane z bazy
       statycznej, gdzie mamy ich dane oraz zdjęcia.
     \item Zdjęcia atrakcji zostały zebrane metodami webscrapingu.
   \end{itemize}
@@ -99,7 +100,7 @@
 \begin{frame}{Walidacja}
   \begin{itemize}
     \item Znalezione drogi są \emph{walidowane}, tzn. sprawdzamy, czy
-      sprawdzamy ich dostępność oraz sprawdzamy ceny na aktualne.
+      sprawdzamy ich dostępność oraz zmieniamy ceny na aktualne.
     \item Top 5 tras jest weryfikowanych asynchronicznie z API w
       czasie rzeczywistym.
   \end{itemize}
